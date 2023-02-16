@@ -1,0 +1,18 @@
+{
+    "name": "kemboielvis22/smsgenius-php-sdk",
+    "description": "SMS Genius php sdk",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Kemboielvis22\\SmsgeniusPhpSdk\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "kemboi22",
+            "email": "kemboielvis22@gmail.xom"
+        }
+    ],
+    "require": {}
+}
