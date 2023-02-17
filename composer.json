@@ -14,5 +14,8 @@
             "email": "kemboielvis22@gmail.xom"
         }
     ],
-    "require": {}
+    "require": {
+      "ext-curl": "*",
+      "ext-json": "*"
+    }
 }
