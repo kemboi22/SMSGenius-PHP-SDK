@@ -1,5 +1,5 @@
 {
-    "name": "kemboielvis22/smsgenius-php-sdk",
+    "name": "kemboielvis/smsgenius-php-sdk",
     "description": "SMS Genius php sdk",
     "type": "library",
     "license": "MIT",
