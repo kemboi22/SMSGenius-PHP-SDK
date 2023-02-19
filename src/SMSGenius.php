@@ -23,7 +23,7 @@ class SMSGenius
         return new SMS($this->apikey);
     }
 
-    protected function postCurl($url, $array)
+    protected function postCurl(string $url, array $array)
     {
         $cURL = curl_init($this->baseurl.$url);
         curl_setopt($cURL, CURLOPT_RETURNTRANSFER, true);
@@ -33,7 +33,7 @@ class SMSGenius
         return json_decode($response, true);
     }
 
-    protected function getCurl($url)
+    protected function getCurl(string $url)
     {
         $cURL = curl_init();
         curl_setopt($cURL, CURLOPT_URL, $this->baseurl.$url);

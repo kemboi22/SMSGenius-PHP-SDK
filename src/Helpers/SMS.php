@@ -28,15 +28,18 @@ class SMS extends \Kemboielvis22\SmsgeniusPhpSdk\SMSGenius
         return $this;
     }
 
-    public function sendSingleSMS($array)
+    public function sendSingleSMS(array $array)
     {
-
-
+        $secret = array("secret" => $this->apikey);
+        $mergedArray = $array + $secret;
+        return $this->postCurl("send/sms", $mergedArray);
     }
 
-    public function sendBulkSMS()
+    public function sendBulkSMS(array $array)
     {
-
+        $secret = array("secret" => $this->apikey);
+        $mergedArray = $array + $secret;
+        return $this->postCurl("send/sms.bulk", $mergedArray);
     }
 
     public function deleteReceivedMessages($smsID = "")

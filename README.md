@@ -100,24 +100,55 @@ $sentMessages = $sms->getSentMessages();
 <li>Send Bulk Messages</li>
 
 ```php
-  $array = [
-      "secret" => "API_SECRET", // your API secret from (Tools -> API Keys) page
+// For devices mode 
+  $array = [      
       "mode" => "devices", // There are credits or devices
       "campaign" => "bulk test",
       "numbers" => "+254712123456,+639123456789,+639123456789",
-      "groups" => "1,2,3,4",
+      "groups" => "1,2,3,4", // ( OPTIONAL )
       "device" => "00000000-0000-0000-d57d-f30cb6a89289", // For type Devices
       "sim" => 1, // For type Devices
-      "priority" => 1, // For type Devices
+      "priority" => 1, // ( OPTIONAL ) For type Devices 
       "message" => "Hello World!"
   ];
-
+// For credits mode
+    $array = [      
+      "mode" => "credits", // There are credits or devices
+      "campaign" => "bulk test",      
+      "groups" => "1,2,3,4",      
+      "message" => "Hello World!"
+  ];
+  $sms = $smsGenius->SMSClass();
+   // Send Single message
+   $response = $sms->sendBulkSMS($array);
+   // response is an array
 
 ```
 
 <li>Send Single Messages</li>
 
 ```php
+// For mode device
+$array = [ // your API secret from (Tools -> API Keys) page
+      "mode" => "devices",
+      "device" => "00000000-0000-0000-d57d-f30cb6a89289",
+      "sim" => 1, // Sim slot number Only for devices
+      "priority" => 1, // ( OPTIONAL ) If you want to send the messages as priority, 1 for yes and 2 for no. For "devices" mode only.
+      "phone" => "+254712123456",
+      "message" => "Hello World!"
+];
+// For Credits mode
+$array = [ // your API secret from (Tools -> API Keys) page
+      "mode" => "credits",      
+      "phone" => "+254712123456",
+      "message" => "Hello World!",
+      "gateway" => 3, // gateway number You can get it from getGatewayRoutes()
+];
+
+$sms = $smsGenius->SMSClass();
+// Send Single message
+$response = $sms->sendSingleSMS($array);
+// response is an array
 
 ```
 
@@ -138,7 +169,7 @@ $campaign = $sms->startSMSCampaign("Campaign ID")
 $sms = $smsGenius->SMSClass();
 // Stop a SMS campaign.
 // Pass the campaign ID as the parameter 
-$campaign = $sms->stopSMSCampaign("Campign ID");
+$campaign = $sms->stopSMSCampaign("Campaign ID");
 // campaign is an array 
 
 ```
@@ -254,6 +285,129 @@ $response = $otp->verifyOTP("OTP");
 // Response is an array
 ```
 
+5. WhatsApp Messaging
+
+<li>Delete Received Chat</li>
+
+```php
+$whatsapp = $smsGenius->WhatsApp();
+// Delete a specific Chat ID
+$response = $whatsapp->deleteReceivedChat("chatID");
+// Get the response (array)
+```
+
+<li>Delete Sent Chat</li>
+
+```php
+$whatsapp = $smsGenius->WhatsApp();
+// Delete a sent chat with a specific ID
+$response = $whatsapp->deleteSentChat("chatID");
+// Get the response (array)
+```
+
+<li>Delete WhatsApp Campaign</li>
+
+```php
+$whatsapp = $smsGenius->WhatsApp();
+// Delete whatsapp campaign
+$response = $whatsapp->deleteWhatsAppCampaign("chatid");
+// Get the response (array)
+```
+
+<li>Get Accounts</li>
+
+```php
+$whatsapp = $smsGenius->WhatsApp();
+// Get accounts
+$accounts = $whatsapp->getAccounts();
+// Get response 
+```
+
+<li>Get Pending WhatsApp Chats</li>
+
+```php
+$whatsapp = $smsGenius->WhatsApp();
+// Get pending chats
+$pending = $whatsapp->getPendingChats();
+// Get response (Array)
+```
+
+<li>Get Received Chats</li>
+
+```php
+$whatsapp = $smsGenius->WhatsApp();
+// Get received chats
+$received = $whatsapp->getReceivedChats();
+// Get response  (array)
+```
+
+<li>Get Sent Chats</li>
+
+```php
+$whatsapp = $smsGenius->WhatsApp();
+// Get sent messages
+$sent = $whatsapp->getSentChats();
+// response ( Array )
+```
+
+<li>Get WhatsApp Campaign Chats</li>
+
+```php
+$whatsapp = $smsGenius->WhatsApp();
+// Get WhatsApp Campaign Chats
+$campaign = $whatsapp->getWhatsAppCampaign();
+// Response (Array)
+```
+
+<li>Post Bulk Messages</li>
+
+```php
+$array = [
+      "account" => 1, // account ID
+      "campaign" => "bulk test",
+      "numbers" => "+254712123456,+639123456789,+639123456789",
+      "groups" => "1,2,3,4", // ( OPTIONAL )
+      "message" => "Hello World!",
+      "type" => "text" // "text", "media", "button", "list", "template"
+];
+$whatsapp = $smsGenius->WhatsApp();
+// Send Bulk Messages
+$response = $whatsapp->sendBulkChat($array);
+// Response ( Array )
+```
+
+<li>Send Single Message</li>
+
+```php
+$array = [
+      "account" => 1, // Account id
+      "recipient" => "+254712123456",
+      "type" => "text", // "text", "media", "button", "list", "template"
+      "message" => "Hello World!"
+];
+$whatsapp = $smsGenius->WhatsApp();
+// Send Single Message
+$response = $whatsapp->sendSingleChat($array);
+// Get response ( Array )
+```
+
+<li>Start WhatsApp Campaign [ <i>params(campaignID)</i> ]</li>
+
+```php
+$whatsapp = $smsGenius->WhatsApp();
+// Start WhatsApp Campaign
+$response = $whatsapp->startWhatsAppCampaign("campaignID");
+// Response ( Array )
+```
+
+<li>Stop WhatsApp Campaign [ <i>params(campaignID)</i> ]</li>
+
+```php
+$whatsapp = $smsGenius->WhatsApp();
+// Stop WhatsApp Campaign
+$response = $whatsapp->stopWhatsAppCampaign("campaignID");
+// Response ( Array )
+```
 
 
 

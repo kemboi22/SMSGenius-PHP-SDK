@@ -87,13 +87,16 @@ class WhatsApp extends \Kemboielvis22\SmsgeniusPhpSdk\SMSGenius
 
     public function sendBulkChat($array)
     {
-
-        return $this->postCurl("send/whatsapp.bulk", $array);
+        $secret = array("secret" => $this->apikey);
+        $mergedArray = $array + $secret;
+        return $this->postCurl("send/whatsapp.bulk", $mergedArray);
     }
 
     public function sendSingleChat($array)
     {
-        return $this->postCurl("send/whatsapp", $array);
+        $secret = array("secret" => $this->apikey);
+        $mergedArray = $array + $secret;
+        return $this->postCurl("send/whatsapp", $mergedArray);
     }
 
     public function startWhatsAppCampaign($campaignID)
